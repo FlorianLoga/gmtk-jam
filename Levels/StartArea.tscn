@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b70pb8nr044ud"]
+
+[ext_resource type="Script" uid="uid://eryq5vv5as14" path="res://Levels/start_area.gd" id="1_cdjti"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrivr"]
+size = Vector2(182, 127)
+
+[node name="StartArea" type="Area2D" unique_id=2117014298]
+script = ExtResource("1_cdjti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=279553730]
+shape = SubResource("RectangleShape2D_xrivr")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=496772509]

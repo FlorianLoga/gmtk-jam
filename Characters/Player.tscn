@@ -2,12 +2,17 @@
 
 [ext_resource type="Script" uid="uid://dp1s3j2iy8n5g" path="res://Characters/player.gd" id="1_oo13o"]
 [ext_resource type="Texture2D" uid="uid://cx221ibwp33h5" path="res://icon.svg" id="1_t8hoq"]
+[ext_resource type="PackedScene" uid="uid://x0uxjqbf4m8v" path="res://Characters/upgrade.tscn" id="3_1ju47"]
+[ext_resource type="Script" uid="uid://cca2wbnvhtiu7" path="res://Characters/upgrade_one.gd" id="4_ynroq"]
+[ext_resource type="Script" uid="uid://dtcrq6h6ajx5k" path="res://Characters/upgrade_two.gd" id="5_v6d5b"]
+[ext_resource type="Script" uid="uid://bn85yctxwce5g" path="res://Characters/upgrade_three.gd" id="6_55lj8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrivr"]
 size = Vector2(122, 117)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1123172477 node_paths=PackedStringArray("CoyoteTimer", "JumpBufferTimer")]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1123172477 node_paths=PackedStringArray("upgrade_arr", "CoyoteTimer", "JumpBufferTimer")]
 script = ExtResource("1_oo13o")
+upgrade_arr = [NodePath("UpgradeOne"), NodePath("UpgradeTwo"), NodePath("UpgradeThree")]
 CoyoteTimer = NodePath("CoyoteTimer")
 JumpBufferTimer = NodePath("JumpBufferTimer")
 
@@ -26,4 +31,39 @@ one_shot = true
 
 [node name="JumpBufferTimer" type="Timer" parent="." unique_id=1143713702]
 wait_time = 0.12
+one_shot = true
+
+[node name="UpgradeOne" parent="." unique_id=858234164 node_paths=PackedStringArray("player") instance=ExtResource("3_1ju47")]
+script = ExtResource("4_ynroq")
+player = NodePath("..")
+
+[node name="UpgradeTwo" type="Node" parent="." unique_id=1004038602 node_paths=PackedStringArray("player", "cooldown_timer", "active_timer")]
+script = ExtResource("5_v6d5b")
+speed_upgrade = 100.0
+accel_upgrade = 20.0
+player = NodePath("..")
+cooldown_timer = NodePath("CooldownTimer")
+active_timer = NodePath("ActiveTimer")
+time_price = 10.0
+
+[node name="CooldownTimer" type="Timer" parent="UpgradeTwo" unique_id=58477692]
+wait_time = 5.0
+one_shot = true
+
+[node name="ActiveTimer" type="Timer" parent="UpgradeTwo" unique_id=654583603]
+wait_time = 2.0
+one_shot = true
+
+[node name="UpgradeThree" type="Node" parent="." unique_id=2030889772 node_paths=PackedStringArray("player", "cooldown_timer", "active_timer")]
+script = ExtResource("6_55lj8")
+player = NodePath("..")
+cooldown_timer = NodePath("CooldownTimer")
+active_timer = NodePath("ActiveTimer")
+
+[node name="CooldownTimer" type="Timer" parent="UpgradeThree" unique_id=1720785599]
+wait_time = 30.0
+one_shot = true
+
+[node name="ActiveTimer" type="Timer" parent="UpgradeThree" unique_id=1340193884]
+wait_time = 10.0
 one_shot = true
