@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bbt588fink05n"]
+
+[ext_resource type="Script" uid="uid://3thnodr01ar1" path="res://Levels/Obstacles/killzone.gd" id="1_wsna6"]
+
+[node name="Killzone" type="Area2D" unique_id=280576651]
+script = ExtResource("1_wsna6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

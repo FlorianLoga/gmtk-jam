@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://x0uxjqbf4m8v"]
+
+[ext_resource type="Script" uid="uid://cemmq1qaqdghi" path="res://Character/upgrade.gd" id="1_v0d60"]
+
+[node name="UpgradeOne" type="Node" unique_id=858234164 node_paths=PackedStringArray("cooldown_timer", "active_timer")]
+script = ExtResource("1_v0d60")
+cooldown_timer = NodePath("CooldownTimer")
+active_timer = NodePath("ActiveTimer")
+time_price = 20.0
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=714768863]
+wait_time = 3.0
+one_shot = true
+
+[node name="ActiveTimer" type="Timer" parent="." unique_id=1375041792]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
+[connection signal="timeout" from="ActiveTimer" to="." method="_on_active_timer_timeout"]
