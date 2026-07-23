@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://dav4d7m0tkj0b"]
 
-[ext_resource type="PackedScene" uid="uid://bfmnrnrcy7ela" path="res://Characters/Player.tscn" id="1_3anf8"]
+[ext_resource type="PackedScene" uid="uid://bfmnrnrcy7ela" path="res://Character/Player.tscn" id="1_3anf8"]
 [ext_resource type="Script" uid="uid://b5ek03hhbwkoj" path="res://Levels/level_1.gd" id="1_iotdp"]
 [ext_resource type="Texture2D" uid="uid://cx221ibwp33h5" path="res://icon.svg" id="2_fhqol"]
 [ext_resource type="PackedScene" uid="uid://b70pb8nr044ud" path="res://Levels/StartArea.tscn" id="4_nutv8"]
+[ext_resource type="PackedScene" uid="uid://bbt588fink05n" path="res://Levels/Obstacles/killzone.tscn" id="5_nutv8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrivr"]
 size = Vector2(1704, 115)
@@ -17,6 +18,9 @@ size = Vector2(123, 509.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b1lj4"]
 size = Vector2(127, 121)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wi6ju"]
+size = Vector2(4646, 578)
+
 [node name="Main" type="Node2D" unique_id=658485625 node_paths=PackedStringArray("player", "game_timer")]
 script = ExtResource("1_iotdp")
 player = NodePath("CharacterBody2D")
@@ -24,7 +28,7 @@ game_timer = NodePath("GameTimer")
 
 [node name="CharacterBody2D" parent="." unique_id=1123172477 instance=ExtResource("1_3anf8")]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=792581154]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=792581154 groups=["solid"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1536036346]
 position = Vector2(297, 256)
@@ -68,6 +72,13 @@ position = Vector2(1413, 17)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndArea" unique_id=776873576]
 position = Vector2(2.5, 3.5)
 shape = SubResource("RectangleShape2D_b1lj4")
+
+[node name="Killzone" parent="." unique_id=280576651 instance=ExtResource("5_nutv8")]
+position = Vector2(289, 473)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=1252573583]
+position = Vector2(-145, 205)
+shape = SubResource("RectangleShape2D_wi6ju")
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="body_entered" from="EndArea" to="." method="_on_end_area_body_entered"]

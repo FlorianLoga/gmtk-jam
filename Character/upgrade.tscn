@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://x0uxjqbf4m8v"]
 
-[ext_resource type="Script" uid="uid://cemmq1qaqdghi" path="res://Characters/upgrade.gd" id="1_v0d60"]
+[ext_resource type="Script" uid="uid://cemmq1qaqdghi" path="res://Character/upgrade.gd" id="1_v0d60"]
 
 [node name="UpgradeOne" type="Node" unique_id=858234164 node_paths=PackedStringArray("cooldown_timer", "active_timer")]
 script = ExtResource("1_v0d60")

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cbl6hdllx5fj5"]
+
+[ext_resource type="Script" uid="uid://b11sanmptmpdy" path="res://Levels/Obstacles/enemy.gd" id="1_gt56a"]
+[ext_resource type="Texture2D" uid="uid://cx221ibwp33h5" path="res://icon.svg" id="1_ykkml"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrivr"]
+size = Vector2(126, 123)
+
+[node name="Mummy" type="CharacterBody2D" unique_id=1847278642]
+script = ExtResource("1_gt56a")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1821716064]
+texture = ExtResource("1_ykkml")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=425527428]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_xrivr")

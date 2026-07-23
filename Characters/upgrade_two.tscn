@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://bemy6y7ng2flx"]
-
-[ext_resource type="Script" uid="uid://dtcrq6h6ajx5k" path="res://Characters/upgrade_two.gd" id="1_ifjke"]
-
-[node name="UpgradeTwo" type="Node" unique_id=450560103 node_paths=PackedStringArray("player")]
-script = ExtResource("1_ifjke")
-player = NodePath("")
-time_price = 10.0

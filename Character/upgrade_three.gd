@@ -2,7 +2,7 @@ extends Upgrade
 
 
 func power_up():
-	pass
+	player.can_tp = true
 
 func power_down():
-	pass
+	player.can_tp = false

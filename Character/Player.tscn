@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bfmnrnrcy7ela"]
 
-[ext_resource type="Script" uid="uid://dp1s3j2iy8n5g" path="res://Characters/player.gd" id="1_oo13o"]
+[ext_resource type="Script" uid="uid://dp1s3j2iy8n5g" path="res://Character/player.gd" id="1_oo13o"]
 [ext_resource type="Texture2D" uid="uid://cx221ibwp33h5" path="res://icon.svg" id="1_t8hoq"]
-[ext_resource type="PackedScene" uid="uid://x0uxjqbf4m8v" path="res://Characters/upgrade.tscn" id="3_1ju47"]
-[ext_resource type="Script" uid="uid://cca2wbnvhtiu7" path="res://Characters/upgrade_one.gd" id="4_ynroq"]
-[ext_resource type="Script" uid="uid://dtcrq6h6ajx5k" path="res://Characters/upgrade_two.gd" id="5_v6d5b"]
-[ext_resource type="Script" uid="uid://bn85yctxwce5g" path="res://Characters/upgrade_three.gd" id="6_55lj8"]
+[ext_resource type="PackedScene" uid="uid://x0uxjqbf4m8v" path="res://Character/upgrade.tscn" id="3_1ju47"]
+[ext_resource type="Script" uid="uid://cca2wbnvhtiu7" path="res://Character/upgrade_one.gd" id="4_ynroq"]
+[ext_resource type="Script" uid="uid://dtcrq6h6ajx5k" path="res://Character/upgrade_two.gd" id="5_v6d5b"]
+[ext_resource type="Script" uid="uid://bn85yctxwce5g" path="res://Character/upgrade_three.gd" id="6_55lj8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrivr"]
 size = Vector2(122, 117)
@@ -59,6 +59,7 @@ script = ExtResource("6_55lj8")
 player = NodePath("..")
 cooldown_timer = NodePath("CooldownTimer")
 active_timer = NodePath("ActiveTimer")
+time_price = 50.0
 
 [node name="CooldownTimer" type="Timer" parent="UpgradeThree" unique_id=1720785599]
 wait_time = 30.0
@@ -67,3 +68,12 @@ one_shot = true
 [node name="ActiveTimer" type="Timer" parent="UpgradeThree" unique_id=1340193884]
 wait_time = 10.0
 one_shot = true
+
+[node name="RightRaycast" type="RayCast2D" parent="." unique_id=1092283067]
+unique_name_in_owner = true
+target_position = Vector2(325, 0)
+
+[node name="LeftRaycast" type="RayCast2D" parent="." unique_id=1177198988]
+unique_name_in_owner = true
+position = Vector2(0, -1)
+target_position = Vector2(-325, 0)

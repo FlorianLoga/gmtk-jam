@@ -23,12 +23,20 @@ var max_speed: float = 250.0
 var acceleration: float = 30.0
 const FRICTION: float = 10.0
 
+#vars for tp dash
+var look_dir_x: int = 1
+var can_tp: bool = false
+
+
 func _physics_process(delta: float) -> void:
 	var x_input: float = Input.get_action_strength("right") - Input.get_action_strength("left")
 	var velocity_weight: float = delta * (acceleration if x_input else FRICTION)
 	velocity.x = lerp(velocity.x, x_input * max_speed, velocity_weight)
 	
-	if x_input > 0:
+	if x_input:
+		look_dir_x = int(x_input)
+		print(look_dir_x)
+	if x_input > 0: # maybe these need to be inside if x_input?
 		pass #play walk_right
 	else:
 		pass #play walk.flip_h
@@ -72,7 +80,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("one"):
 		if upgrade_arr[0].time_price < game_timer.time_left:
 			upgrade_arr[0].activate()
@@ -85,7 +93,14 @@ func _input(event: InputEvent) -> void:
 		if upgrade_arr[2].time_price < game_timer.time_left:
 			upgrade_arr[2].activate()
 			print("3rd skill pressed")
-
-
-func enable_speedup(upgrade: Upgrade):
-	pass
+			
+	if can_tp and Input.is_action_just_pressed("teleport_dash"):
+		if look_dir_x == 1:
+			if %RightRaycast.get_collider() != null and %RightRaycast.get_collider().is_in_group("solid"):
+				return
+			global_position += %RightRaycast.target_position
+		elif look_dir_x == -1:
+			if %LeftRaycast.get_collider() != null and %LeftRaycast.get_collider().is_in_group("solid"):
+				return
+			global_position += %LeftRaycast.target_position
+	
